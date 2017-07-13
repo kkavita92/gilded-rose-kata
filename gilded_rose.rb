@@ -8,6 +8,8 @@ class GildedRose
     @items.each do |item|
       if item.name == 'normal'
         update_normal_item(item)
+      elsif item.name == 'Aged Brie'
+        update_aged_brie(item)
       end
     end
   end
@@ -18,6 +20,14 @@ class GildedRose
     item.sell_in -= 1
     item.quality -= 1 unless item.quality == 0
     item.quality -= 1 if item.sell_in < 0
+  end
+
+  def update_aged_brie(item)
+    item.sell_in -= 1
+    item.quality += 1 unless item.quality >= 50
+  end
+
+  def update_backstage_passes(item)
   end
 
 end

@@ -1,4 +1,4 @@
-require './gilded_rose'
+require './rough_work'
 
 describe GildedRose do
 
@@ -24,6 +24,11 @@ describe GildedRose do
     it 'should increase quality by 1 per day' do
       items = [Item.new('Aged Brie', 10, 10)]
       expect{ GildedRose.new(items).update_quality }.to change { items[0].quality }.by(1)
+    end
+
+    it 'should increase quality by 2 per day after sellin date' do
+      items = [Item.new('Aged Brie', 0, 10)]
+      expect{ GildedRose.new(items).update_quality }.to change { items[0].quality }.by(2)
     end
 
     it 'should have maximum quality of 50' do
