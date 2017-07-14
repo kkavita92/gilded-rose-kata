@@ -19,25 +19,29 @@ class GildedRose
   private
 
   def update_normal_item(item)
-    item.sell_in -= 1
+    update_sell_in(item)
     item.quality -= 1 unless item.quality == 0
     item.quality -= 1 if item.sell_in <= 0
   end
 
   def update_aged_brie(item)
-    item.sell_in -= 1
+    update_sell_in(item)
     item.quality += 1 unless item.quality >= 50
     item.quality += 1 if item.sell_in <= 0
   end
 
   def update_backstage_passes(item)
-    item.sell_in -= 1
+    update_sell_in(item)
     return if item.quality >= 50
     return item.quality = 0 if item.sell_in < 0
 
     item.quality += 1
     item.quality += 1 if item.sell_in < 10
     item.quality += 1 if item.sell_in < 5
+  end
+
+  def update_sell_in(item)
+    item.sell_in -= 1
   end
 
 end
