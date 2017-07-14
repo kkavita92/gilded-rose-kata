@@ -1,4 +1,4 @@
-require './rough_work'
+require './gilded_rose'
 
 describe GildedRose do
 

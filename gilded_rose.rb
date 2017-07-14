@@ -10,6 +10,8 @@ class GildedRose
         update_normal_item(item)
       elsif item.name == 'Aged Brie'
         update_aged_brie(item)
+      elsif item.name == 'Backstage passes to a TAFKAL80ETC concert'
+        update_backstage_passes(item)
       end
     end
   end
@@ -19,15 +21,23 @@ class GildedRose
   def update_normal_item(item)
     item.sell_in -= 1
     item.quality -= 1 unless item.quality == 0
-    item.quality -= 1 if item.sell_in < 0
+    item.quality -= 1 if item.sell_in <= 0
   end
 
   def update_aged_brie(item)
     item.sell_in -= 1
     item.quality += 1 unless item.quality >= 50
+    item.quality += 1 if item.sell_in <= 0
   end
 
   def update_backstage_passes(item)
+    item.sell_in -= 1
+    return if item.quality >= 50
+    return item.quality = 0 if item.sell_in < 0
+
+    item.quality += 1
+    item.quality += 1 if item.sell_in < 10
+    item.quality += 1 if item.sell_in < 5
   end
 
 end
